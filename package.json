@@ -1,0 +1,40 @@
+{
+  "name": "news-exp-api",
+  "version": "0.0.1",
+  "description": "Yandex.Praktikum diploma project",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "celebrate": "^12.1.0",
+    "cookie-parser": "^1.4.5",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "express": "^4.17.1",
+    "express-winston": "^4.0.3",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.10",
+    "nodemon": "^2.0.3",
+    "validator": "^13.0.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexTsarenkov/news-exp-api.git"
+  },
+  "author": "Aleksey Tsarenkov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexTsarenkov/news-exp-api/issues"
+  },
+  "homepage": "https://github.com/AlexTsarenkov/news-exp-api#readme"
+}
