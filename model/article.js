@@ -25,6 +25,7 @@ const articleSchema = new mongoose.Schema({
   link: {
     type: String,
     required: true,
+    unique: true,
   },
   image: {
     type: String,
@@ -34,6 +35,7 @@ const articleSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true,
+    select: false,
   },
 });
 

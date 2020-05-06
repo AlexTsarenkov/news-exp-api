@@ -14,7 +14,7 @@ const {
 
 articleRoute.get('/articles', getArticles);
 articleRoute.post('/articles', celebrate(postArticleValidator), postArticle);
-articleRoute.delete('/:id', celebrate(idValidator), deleteArticle);
+articleRoute.delete('/articles/:id', celebrate(idValidator), deleteArticle);
 
 module.exports = {
   articleRoute,

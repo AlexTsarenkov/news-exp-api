@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const { errors } = require('celebrate');
-const { PORT } = require('./config/config');
+const { PORT, dbPath } = require('./config/config');
 
 const app = express();
 const { userRoute, loginRoute } = require('./routes/users');
@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost:27017/news-app-db', {
+mongoose.connect(dbPath, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -27,7 +27,7 @@ mongoose.connect('mongodb://localhost:27017/news-app-db', {
 
 app.use(requestLogger);
 
-app.use('/', loginRoute);
+app.use('/api', loginRoute);
 app.use('/api', auth, userRoute);
 app.use('/api', auth, articleRoute);
 

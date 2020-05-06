@@ -56,17 +56,28 @@ const signIn = (req, res, next) => {
         throw new NotFoundError('User not found');
       }
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-      res.cookie('jwt', token, {
-        maxAge: 604800000,
-        httpOnly: true,
-      }).status(200).send({ message: 'success' });
+      res
+        .cookie('jwt', token, {
+          maxAge: 604800000,
+          httpOnly: true,
+        })
+        .cookie('session', token, {
+          maxAge: 604800000,
+          httpOnly: false,
+        })
+        .status(200).send({ message: 'success' });
     })
     .catch(next);
+};
+
+const signOut = (req, res) => {
+  res.clearCookie('session').status(200).send({ message: 'success' });
 };
 
 
 module.exports = {
   signIn,
   signUp,
+  signOut,
   getUserMe,
 };
