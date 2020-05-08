@@ -1,14 +1,7 @@
 /* eslint-disable consistent-return */
 const jwt = require('jsonwebtoken');
 const { UnathorizedError } = require('../errors/errors');
-
-let JWT_SECRET;
-
-if (process.env.NODE_ENV === 'production') {
-  JWT_SECRET = process.env.JWT_SECRET;
-} else {
-  JWT_SECRET = 'supersecretdevkey';
-}
+const { JWT_SECRET } = require('../config/config');
 
 const auth = (req, res, next) => {
   const token = req.cookies.jwt;

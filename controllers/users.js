@@ -3,15 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../model/user');
 const { NotFoundError, ConflictError } = require('../errors/errors');
-
-let JWT_SECRET;
-
-if (process.env.NODE_ENV === 'production') {
-  JWT_SECRET = process.env.JWT_SECRET;
-} else {
-  JWT_SECRET = 'supersecretdevkey';
-}
-
+const { JWT_SECRET } = require('../config/config');
 
 const getUserMe = (req, res, next) => {
   User.findById(req.user._id)

@@ -29,6 +29,7 @@ mongoose|
 bcryptjs|
 jsonwebtoken|
 joi|
+joi-objectid|
 celebrate|
 winston|
 express-winston|
@@ -36,6 +37,8 @@ cross-env|
 dotenv|
 cookie-parser|
 validator|
+helmet|
+express-rate-limit|
 
 ## dev-пакеты
 Пакет|

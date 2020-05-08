@@ -1,6 +1,8 @@
 
 const { Joi } = require('celebrate');
 
+Joi.objectId = require('joi-objectid')(Joi);
+
 const urlRegExp = new RegExp('^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w.-]+)+[\\w\\-._~:/?#[\\]@!$&\'()*+,;=.]+$');
 
 const postArticleValidator = {
@@ -32,7 +34,7 @@ const signInValidator = {
 
 const idValidator = {
   params: Joi.object().keys({
-    id: Joi.string().required().length(24),
+    id: Joi.objectId().required(),
   }),
 };
 

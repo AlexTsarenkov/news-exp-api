@@ -25,7 +25,6 @@ const articleSchema = new mongoose.Schema({
   link: {
     type: String,
     required: true,
-    unique: true,
   },
   image: {
     type: String,
