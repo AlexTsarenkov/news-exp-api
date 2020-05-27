@@ -12,6 +12,7 @@ const { PORT, DB_PATH } = require('./config/config');
 const app = express();
 const { error } = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { cors } = require('./middlewares/cors');
 const { NotFoundError } = require('./errors/errors');
 const { apiLimit } = require('./config/rate-limit');
 const { router } = require('./routes/index');
@@ -31,7 +32,7 @@ mongoose.connect(DB_PATH, {
 app.use(requestLogger);
 
 app.use('/api/', apiLimit);
-app.use('/', router);
+app.use('/', cors, router);
 
 app.all('*', (req, res, next) => {
   next(new NotFoundError('Resourse not found'));
