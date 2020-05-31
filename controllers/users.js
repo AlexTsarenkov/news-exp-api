@@ -57,7 +57,7 @@ const signIn = (req, res, next) => {
           maxAge: 604800000,
           httpOnly: false,
         })
-        .status(200).send({ message: 'success' });
+        .status(200).send(user);
     })
     .catch(next);
 };
