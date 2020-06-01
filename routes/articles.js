@@ -10,11 +10,13 @@ const {
   getArticles,
   postArticle,
   deleteArticle,
+  getArticlesFromApi,
 } = require('../controllers/article');
 
 articleRoute.get('/articles', getArticles);
 articleRoute.post('/articles', celebrate(postArticleValidator), postArticle);
 articleRoute.delete('/articles/:id', celebrate(idValidator), deleteArticle);
+articleRoute.get('/articles/:keyword', getArticlesFromApi);
 
 module.exports = {
   articleRoute,
