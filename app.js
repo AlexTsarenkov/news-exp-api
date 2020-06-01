@@ -18,7 +18,7 @@ const { NotFoundError } = require('./errors/errors');
 const { apiLimit } = require('./config/rate-limit');
 const { router } = require('./routes/index');
 
-app.use(cors);
+app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
