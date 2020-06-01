@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+const request = require('request');
 const Article = require('../model/article');
 
 const { API_KEY } = require('../config/config');
@@ -13,7 +14,7 @@ const getArticles = (req, res, next) => {
     .catch(next);
 };
 
-const getArticlesFromApi = (req, res, next) => {
+const getArticlesFromApi = (req, res) => {
   const date = new Date();
   const preDate = new Date((date.getTime() - (7 * 24 * 60 * 60 * 1000)));
 
@@ -25,16 +26,13 @@ const getArticlesFromApi = (req, res, next) => {
       + 'pageSize=100&'
       + `apiKey=${API_KEY}`;
 
-  const reqest = new Request(url);
-
-  fetch(reqest)
-    .then((response) => {
-      if (response.ok) {
-        res.send(response.json());
-      }
-      return Promise.reject(new Error(response.statusText));
-    })
-    .catch(next);
+  request(url, { json: true }, (err, body) => {
+    if (!err) {
+      res.send(body.body.articles);
+    } else {
+      res.status(err.status).send(err);
+    }
+  });
 };
 
 const postArticle = (req, res, next) => {
