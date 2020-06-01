@@ -17,7 +17,7 @@ const {
 articleRoute.get('/articles', getArticles);
 articleRoute.post('/articles', celebrate(postArticleValidator), postArticle);
 articleRoute.delete('/articles/:id', celebrate(idValidator), deleteArticle);
-articleNewsApi.get('/', getArticlesFromApi);
+articleNewsApi.post('/', getArticlesFromApi);
 
 module.exports = {
   articleRoute,
