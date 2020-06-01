@@ -12,8 +12,8 @@ const postArticleValidator = {
     text: Joi.string().required(),
     date: Joi.string().required(),
     source: Joi.string().required(),
-    link: Joi.string().pattern(urlRegExp).required(),
-    image: Joi.string().pattern(urlRegExp).required(),
+    link: Joi.string().uri().required(),
+    image: Joi.string().uri().required(),
   }),
 };
 
