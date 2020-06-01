@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const { errors } = require('celebrate');
 const { PORT, DB_PATH } = require('./config/config');
@@ -12,11 +13,12 @@ const { PORT, DB_PATH } = require('./config/config');
 const app = express();
 const { error } = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const { cors } = require('./middlewares/cors');
+// const { cors }= require('./middlewares/cors');
 const { NotFoundError } = require('./errors/errors');
 const { apiLimit } = require('./config/rate-limit');
 const { router } = require('./routes/index');
 
+app.use(cors);
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,7 +34,7 @@ mongoose.connect(DB_PATH, {
 app.use(requestLogger);
 
 app.use('/api/', apiLimit);
-app.use('/', cors, router);
+app.use('/', router);
 
 app.all('*', (req, res, next) => {
   next(new NotFoundError('Resourse not found'));
