@@ -18,7 +18,18 @@ const { NotFoundError } = require('./errors/errors');
 const { apiLimit } = require('./config/rate-limit');
 const { router } = require('./routes/index');
 
-app.use(cors());
+const corsWhiteList = ['http://localhost:8080', 'https://alextsarenkov.github.io'];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (corsWhiteList.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
