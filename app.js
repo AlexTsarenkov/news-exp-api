@@ -18,7 +18,7 @@ const { NotFoundError } = require('./errors/errors');
 const { apiLimit } = require('./config/rate-limit');
 const { router } = require('./routes/index');
 
-const corsWhiteList = ['http://localhost:8080', 'https://alextsarenkov.github.io'];
+const corsWhiteList = ['http://localhost:8080', 'https://alextsarenkov.github.io', undefined];
 const corsOptions = {
   origin: (origin, callback) => {
     if (corsWhiteList.indexOf(origin) !== -1) {
