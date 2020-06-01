@@ -19,7 +19,7 @@ const getArticlesFromApi = (req, res) => {
   const preDate = new Date((date.getTime() - (7 * 24 * 60 * 60 * 1000)));
 
   const url = 'https://praktikum.tk/news/v2/everything?'
-      + `q=${req.params.keyword}&`
+      + `q=${req.body.keyword}&`
       + `from=${preDate.toISOString().slice(0, 10)}&`
   // + `to=${new Date(date.getTime()).toISOString().slice(0, 10)}&`
   // + 'sortBy=popularity&'
